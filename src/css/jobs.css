@@ -1,0 +1,81 @@
+.jobs h3 {
+  font-size: 24px;
+  padding: 0px 20px;
+}
+
+.job_listing_container {
+  width: 95%;
+  max-width: 1000px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  margin: 30px 20px;
+  border: 0.5px solid #d1d5db;
+}
+
+.job_listing_container h4 {
+  font-size: 16px;
+  padding: 20px;
+  margin-bottom: 0;
+  border-bottom: 1px solid #d1d5db;
+}
+
+.job_errmsg {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.joblist_card {
+  padding: 40px 20px;
+  border-bottom: 0.5px solid #d1d5db;
+}
+.joblist_card h3 {
+  font-weight: 400;
+  font-size: 20px;
+  padding: 0;
+}
+.joblist_card h3 span {
+  padding: 5px 8px;
+  font-size: 14px;
+  border-radius: 2px;
+  margin-left: 10px;
+  background-color: #ffe6e6;
+  color: #ea5252;
+}
+.joblist_card h3 span.active {
+  background-color: #e0f5d7;
+  color: #449626;
+}
+
+.joblist_card .loc {
+  margin-top: -5px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.joblist_card .show_lom {
+  font-size: 12px;
+  color: blue;
+  margin-top: 3px;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+.joblist_card .show_lom:hover {
+  text-decoration: underline;
+}
+
+.joblist_card h5 {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.joblist_card .toggle_less {
+  transition: all 0.6s ease;
+  overflow: hidden;
+}
+.joblist_card ul {
+  list-style-type: circle;
+}
+.joblist_card ul li {
+  font-size: 15px;
+}
