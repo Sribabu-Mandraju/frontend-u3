@@ -145,7 +145,7 @@ const Clients = () => {
               <FiSearch style={{ marginRight: "-20px", zIndex: "1" }} />
               <input type="text" placeholder="search......." className="py-1 ps-4" style={{ borderRadius: "5px", border: "0.3px solid grey" }} onChange={e => setSearchQuery(e.target.value)} />
             </div>
-            <button className="btn btn-primary mx-2  " onClick={openModal} style={{ marginRight: "" }}><IoMdPersonAdd /><span className="px-1">{width > 600 ? "Create Client" : "Add"}</span></button>
+            <button className="btn btn-primary mx-2  " onClick={openModal} style={{ marginRight: "" }}><span className="px-1">{width > 600 ? "Create Client" : "Add"}</span></button>
           </div>
           <div className={`w-100 d-flex ${width > 700 ? "justify-content-between" : "justify-content-around"} align-items-center flex-wrap`}>
             <div className="d-flex flex-column mx-auto" style={{ width: "100%", minWidth: "350px", overflowX: "scroll" }}>
