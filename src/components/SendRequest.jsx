@@ -31,7 +31,7 @@ const SendRequest = () => {
                 console.log("Token:", getToken); // Log token for debugging
                 setToken(getToken);
 
-                const result = await axios.get("http://localhost:8080/admin/client/all-clients", {
+                const result = await axios.get("https://backend-u3.onrender.com/admin/client/all-clients", {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `${token}`
@@ -57,7 +57,7 @@ const SendRequest = () => {
         e.preventDefault()
         try {
             const response = await axios.post(
-                'http://localhost:8080/admin/sendRequest',
+                'https://backend-u3.onrender.com/admin/sendRequest',
                 notice,
                 {
                     headers: {

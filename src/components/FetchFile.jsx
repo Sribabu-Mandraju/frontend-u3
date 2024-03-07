@@ -13,7 +13,7 @@ const PdfViewer = () => {
 
   const getPdf = async () => {
     try {
-      const response = await axios.post("http://localhost:8080/client/getPdfByEmail", { "useremail": email }, { responseType: 'json' });
+      const response = await axios.post("https://backend-u3.onrender.com/client/getPdfByEmail", { "useremail": email }, { responseType: 'json' });
       const pdfData = response.data[0].pdffile.Data; 
       const decodedPdfData = atob(pdfData);
       const uint8Array = new Uint8Array(decodedPdfData.length);

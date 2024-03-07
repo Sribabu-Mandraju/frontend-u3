@@ -26,7 +26,7 @@ const Documentation = () => {
         console.log("Token:", getToken); // Log token for debugging
         setToken(getToken);
 
-        const result = await axios.get("http://localhost:8080/admin/client/all-clients", {
+        const result = await axios.get("https://backend-u3.onrender.com/admin/client/all-clients", {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `${token}`
@@ -69,7 +69,7 @@ const Documentation = () => {
 
     try {
       setSpinner(true)
-      const response = await axios.post("http://localhost:8080/admin/client/uploadPdf", formData, {
+      const response = await axios.post("https://backend-u3.onrender.com/admin/client/uploadPdf", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           'Authorization': `${token}`

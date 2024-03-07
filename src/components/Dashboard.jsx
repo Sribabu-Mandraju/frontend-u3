@@ -4,6 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import { RiExpandUpDownFill } from "react-icons/ri";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
+import CustomModal from "./Modal";
 
 const Dashboard = () => {
   const [userToken, setUserToken] = useState("");
@@ -14,6 +15,7 @@ const Dashboard = () => {
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
+  const [showModalArray, setShowModalArray] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +24,7 @@ const Dashboard = () => {
         setUserToken(getToken);
 
         const response = await axios.get(
-          "http://localhost:8080/admin/all-requests",
+          "https://backend-u3.onrender.com/admin/all-requests",
           {
             headers: {
               "Content-Type": "application/json",
@@ -30,7 +32,7 @@ const Dashboard = () => {
             },
           }
         );
-        if(response.status == 200){
+        if (response.status == 200) {
           console.log(response.data)
         }
         if (response.status !== 200) {
@@ -46,20 +48,13 @@ const Dashboard = () => {
 
     fetchData();
   }, [userToken]);
-  useEffect(() => { });
 
   const handleSearch = (e) => {
     setSearch(e.target.value.toLowerCase());
   };
 
-  const handleSelectChange = (e) => {
-    setSelectedOption(e.target.value);
-  };
 
-  const handleRowClick = (request) => {
-    setSelectedRequest(request);
-    setShowModal(true);
-  };
+
 
   const filteredData = requests.filter((item) => {
     return (
@@ -72,30 +67,20 @@ const Dashboard = () => {
     const date = new Date(dateString);
     return formatDistanceToNow(date, { addSuffix: true });
   };
-  const openModal = () => {
-    setShowModal(true);
+
+
+  const openModal = (index) => {
+    const updatedShowModalArray = [...showModalArray];
+    updatedShowModalArray[index] = true;
+    setShowModalArray(updatedShowModalArray);
   };
 
-  const closeModal = () => {
-    setShowModal(false);
+  const closeModal = (index) => {
+    const updatedShowModalArray = [...showModalArray];
+    updatedShowModalArray[index] = false;
+    setShowModalArray(updatedShowModalArray);
   };
 
-  const CustomModal = ({ showModal, closeModal, children }) => {
-    if (!showModal) {
-      return null;
-    }
-
-    return (
-      <div className="modal-overlay">
-        <div className="modal">
-          <button className="modal-close" onClick={closeModal}>
-            Close
-          </button>
-          {children}
-        </div>
-      </div>
-    );
-  };
 
   if (loading) {
     return (
@@ -228,7 +213,7 @@ const Dashboard = () => {
                   className="d-flex align-items-center"
                   style={{ minWidth: "100px" }}
                 >
-                  <span className="">Info</span>
+                  <span className="" onClick={openModal}>Info</span>
                   <RiExpandUpDownFill />
                 </div>
                 <div
@@ -240,73 +225,97 @@ const Dashboard = () => {
                 </div>
               </div>
               {filteredData.map((data, index) => (
-                <div
-                  key={index}
-                  className="d-flex justify-content-around align-items-center hover-effect cursor-pointer border  my-2  py-4 shadow"
-                  onClick={openModal}
-                  style={{
-                    width: "100%",
-                    minWidth: "950px",
-                    height: "50px",
-                    cursor: "pointer",
-                  }}
-                >
-                  <div className="">{index + 1}</div>
+                <>
                   <div
-                    className="d-flex align-items-center"
-                    style={{ minWidth: "200px" }}
+                    key={index}
+                    className="d-flex justify-content-around align-items-center hover-effect cursor-pointer border  my-2  py-4 shadow"
+                    style={{
+                      width: "100%",
+                      minWidth: "950px",
+                      height: "50px",
+                      cursor: "pointer",
+                    }}
                   >
-                    {data.name}
-                  </div>
-                  <div
-                    className="d-flex align-items-center"
-                    style={{ minWidth: "140px" }}
-                  >
-                    {formatDate(data.sended_at)}
-                  </div>
-                  <div
-                    className="d-flex align-items-center"
-                    style={{ minWidth: "170px" }}
-                  >
-                    {data.sendto}
-                  </div>
-                  <div
-                    className="d-flex align-items-center"
-                    style={{ minWidth: "100px" }}
-                  >
-                    <button
-                      className=" badge text-dark btn btn-outline-primary"
-                      onClick={() => handleRowClick(data)}
-                    >
-                      Info
-                    </button>
-                  </div>
-
-                  <div
-                    className={`pe-4 d-flex align-items-center `}
-                    style={{ minWidth: "100px" }}
-                  >
+                    <div className="">{index + 1}</div>
                     <div
-                      className={`badge ${getStatusBadgeColor(
-                        data.status_review
-                      )} ${data.status_review === "Approved" || "approved"
-                        ? "bg-success"
-                        : "bg-danger"
-                        }`}
+                      className="d-flex align-items-center"
+                      style={{ minWidth: "200px" }}
                     >
-                      {data.status_review}
+                      {data.name}
+                    </div>
+                    <div
+                      className="d-flex align-items-center"
+                      style={{ minWidth: "140px" }}
+                    >
+                      {formatDate(data.sended_at)}
+                    </div>
+                    <div
+                      className="d-flex align-items-center"
+                      style={{ minWidth: "170px" }}
+                    >
+                      {data.sendto}
+                    </div>
+                    <div
+                      className="d-flex align-items-center"
+                      style={{ minWidth: "100px" }}
+                    >
+                      <button
+                        className=" badge text-dark btn btn-outline-primary"
+                        onClick={() => openModal(index)}
+                      >
+                        Info
+                      </button>
+                    </div>
+
+                    <div
+                      className={`pe-4 d-flex align-items-center `}
+                      style={{ minWidth: "100px" }}
+                    >
+                      <div
+                        className={`badge ${getStatusBadgeColor(
+                          data.status_review
+                        )} ${data.status_review === "Approved" || "approved"
+                          ? "bg-success"
+                          : "bg-danger"
+                          }`}
+                      >
+                        {data.status_review}
+                      </div>
                     </div>
                   </div>
-                </div>
+                  <CustomModal showModal={showModalArray[index]} closeModal={() => closeModal(index)}>
+                    <div className="container">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <div className="font-bold text-primary h3">{data.name}</div>
+                          <div className="d-flex align-items-center">
+                            <div className="text-secondary">{data.sended_at}</div>
+                          </div>
+                          <hr />
+                          <p className="px-3 mt-3">{data.discription}</p>
+                          <p className="px-3">{data.short_discription}</p>
+                          <div className="d-flex justify-content-end mt-3">
+                            <div className="d-flex flex-column mx-3">
+                              <div className="font-bold text-lg">To /-</div>
+                              <div className="">{data.sendto}</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CustomModal>
+                </>
+
+
               ))}
             </div>
           </div>
         </div>
       </section>
-      { }
     </>
   );
-};
+}
+
 
 const getStatusBadgeColor = (status) => {
   switch (status) {

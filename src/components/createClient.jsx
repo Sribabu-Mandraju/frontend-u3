@@ -29,7 +29,7 @@ const CreateClient = () => {
         console.log(createClient)
         try {
             const response = await axios.post(
-                'http://localhost:8080/user/signup',
+                'https://backend-u3.onrender.com/user/signup',
                 createClient,
                 {
                     headers: {
@@ -63,43 +63,43 @@ const CreateClient = () => {
                 <div className="w-100 row">
                     <div className="col-6">
                         <label htmlFor="fname" className="form-label">First Name</label>
-                        <input type="text" name="fistname" className="form-control" onChange={handleChange} />
+                        <input type="text" name="fistname" className="form-control" onChange={handleChange} required />
                     </div>
                     <div className="col-6">
                         <label htmlFor="lname" className="form-label">Last Name</label>
-                        <input type="text" name="lastname" className="form-control" onChange={handleChange} />
+                        <input type="text" name="lastname" className="form-control" onChange={handleChange} required />
                     </div>
                 </div>
                 <div className="row w-100">
                     <div className="col-12">
                         <label htmlFor="email" className="form-label">Email</label>
-                        <input type="email" name="email" className="form-control" onChange={handleChange} />
+                        <input type="email" name="email" className="form-control" onChange={handleChange} required />
                     </div>
                 </div>
                 <div className="row w-100">
                     <div className="col-6">
                         <label htmlFor="company" className="form-label">Company</label>
-                        <input type="text" name="company" className="form-control" onChange={handleChange} />
+                        <input type="text" name="company" className="form-control" onChange={handleChange} required />
                     </div>
                     <div className="col-6">
                         <label htmlFor="pin" className="form-label">Postal</label>
-                        <input type="text" name="postal" className="form-control" onChange={handleChange} />
+                        <input type="text" name="postal" className="form-control" onChange={handleChange} required />
                     </div>
                 </div>
                 <div className="w-100 row">
                     <div className="col-12">
                         <label htmlFor="address" className="form-label">Address</label>
-                        <input type="text" name="address" className="form-control" onChange={handleChange} />
+                        <input type="text" name="address" className="form-control" onChange={handleChange} required />
                     </div>
                 </div>
                 <div className="w-100 row">
                     <div className="col-6">
                         <label htmlFor="city" className="form-label">City</label>
-                        <input type="text" name="city" className="form-control" onChange={handleChange} />
+                        <input type="text" name="city" className="form-control" onChange={handleChange} required />
                     </div>
                     <div className="col-6">
                         <label htmlFor="province" className="form-label">Provience</label>
-                        <input type="text" name="province" className="form-control" onChange={handleChange} />
+                        <input type="text" name="province" className="form-control" onChange={handleChange} required />
                     </div>
                 </div>
                 <div className="w-100 row">

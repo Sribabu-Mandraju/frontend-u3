@@ -26,7 +26,6 @@ const Home = () => {
   const [userData, setUserData] = useState({});
   const tabs = [
     { tab: "dashboard", tabName: "Dashboard", icon: <AiOutlineDashboard /> },
-    { tab: "documentsList", tabName: "Documents", icon: <AiFillFolder /> },
     { tab: "clients", tabName: "Clients", icon: <MdOutlineGroups /> },
     { tab: "sendRequest", tabName: "Send Request", icon: <MdOutlineGroups /> },
     {
@@ -72,7 +71,7 @@ const Home = () => {
         setUserToken(getToken);
 
         const response = await axios.get(
-          "http://localhost:8080/admin/adminInfo",
+          "https://backend-u3.onrender.com/admin/adminInfo",
           {
             headers: {
               "Content-Type": "application/json",
@@ -205,8 +204,8 @@ const Home = () => {
                 className="sidebar bg-white justify-content-between  d-flex flex-column shadow "
                 style={{
                   height: "94vh",
-                  minWidth: "360px",
-                  marginLeft: side ? "0px" : "-360px",
+                  minWidth: "260px",
+                  marginLeft: side ? "0px" : "-260px",
                   transitionDuration: "0.3s",
                   zIndex: "200",
                 }}
@@ -215,9 +214,8 @@ const Home = () => {
                   {tabs.map((data) => (
                     <div
                       key={data.tab}
-                      className={`tab mb-2  ${
-                        tab == data.tab ? "tab-actived" : ""
-                      }`}
+                      className={`tab mb-2  ${tab == data.tab ? "tab-actived" : ""
+                        }`}
                       onClick={() => {
                         setTab(data.tab);
                       }}
@@ -294,9 +292,8 @@ const Home = () => {
                   {tabs.map((data) => (
                     <div
                       key={data.tab}
-                      className={`tab mb-2  text-center ${
-                        tab == data.tab ? "" : ""
-                      }`}
+                      className={`tab mb-2  text-center ${tab == data.tab ? "" : ""
+                        }`}
                       onClick={() => {
                         setTab(data.tab);
                         setSide(false);
