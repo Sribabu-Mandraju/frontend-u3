@@ -2,9 +2,12 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../App.css';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast'
 
 const SendRequest = () => {
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
+    const [loading2, setLoading2] = useState(false)
+
     const Navigate = useNavigate()
     const [token, setToken] = useState('');
     const [clients, setClients] = useState([])
@@ -44,9 +47,11 @@ const SendRequest = () => {
                 }
 
                 setClients(result.data);
-                setLoading(false);
+
             } catch (err) {
                 console.error(err);
+                setLoading(false)
+
             }
         };
 
@@ -55,6 +60,7 @@ const SendRequest = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading2(true)
         try {
             const response = await axios.post(
                 'https://backend-u3.onrender.com/admin/sendRequest',
@@ -67,14 +73,46 @@ const SendRequest = () => {
                 }
             );
             if (response.status === 200) {
-                alert('Request successfully sent');
-                console.log(notice)
-                window.location.reload();
+                toast.success("request successfully sended")
+                setLoading2(false)
+                setNotice({
+                    name: "",
+                    short_discription: "",
+                    discription: "",
+                    postedTo: "",
+                    sendto: "",
+                    link: "",
+                    status_review: "In Review"
+                })
             }
         } catch (err) {
-            console.log(err);
+            toast.error("failed to send resquest")
+            setLoading2(false)
+            setNotice({
+                name: "",
+                short_discription: "",
+                discription: "",
+                postedTo: "",
+                sendto: "",
+                link: "",
+                status_review: "In Review"
+            })
         }
     };
+    if (loading) {
+        return (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+                <div className="">Loading...</div>
+            </div>
+        )
+    }
+    else if (loading2) {
+        return (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+                <div className="">Uploading...</div>
+            </div>
+        )
+    }
 
     return (
         <>
