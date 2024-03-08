@@ -3,60 +3,70 @@
   margin: 0;
   font-family: Futura, sans-serif;
 }
+
 ::-webkit-scrollbar {
-  width: 0px; /* for vertical scrollbar */
+  width: 0px;
 }
+
 body {
   width: 100%;
   background-color: #fafafa;
 }
+
 ul {
   list-style: none;
 }
+
 .main-view {
   display: flex;
   width: 100%;
 }
+
 @media (max-width: 800) {
-  .main-view {
-  }
+  .main-view {}
 }
+
 form.resource-form span {
   width: 100%;
 }
+
 form.resource-form span label {
   font-size: 17px;
   color: #006996;
   font-weight: 600;
 }
+
 form.resource-form span select {
   width: 97%;
   max-width: 400px;
   height: 40px;
   border: 1px solid gray;
-  border-radius: 20px;
+  border-radius: 4px;
   outline: none;
 }
+
 form.resource-form span textarea {
   width: 97%;
   max-width: 400px;
   border: 1px solid gray;
-  border-radius: 20px;
+  border-radius: 4px;
   outline: none;
   padding-left: 10px;
   color: #1f94c6;
 }
+
 form.resource-form span input {
   width: 97%;
   max-width: 400px;
   height: 40px;
   border: 1px solid gray;
-  border-radius: 20px;
+  border-radius: 4px;
   outline: none;
   padding-left: 10px;
   color: #1f94c6;
   font-weight: 500;
 }
+
 form.resource-form input::placeholder {
   padding-left: 10px;
   font-weight: 400;
@@ -66,18 +76,22 @@ form.resource-form input::placeholder {
   .tab {
     font-size: 15px;
   }
+
   .resources .details {
     font-size: 12px;
     font-weight: 500;
   }
+
   .details .s-no {
     display: none;
   }
 }
+
 .tab-active {
   color: #006996;
   position: relative;
 }
+
 .tab-active::after {
   position: absolute;
   bottom: -2px;
@@ -89,60 +103,76 @@ form.resource-form input::placeholder {
   border-radius: 10px;
   background-color: #006996;
 }
+
 .resources .show-content {
   display: block;
 }
+
 .resources .hide-content {
   display: none;
 }
+
 .content-info {
   transition-duration: 0.5s;
   cursor: pointer;
 }
+
 .content-info:hover {
   transform: scale(1.01);
 }
+
 .bold-1 {
   font-weight: 700;
 }
+
 .bold-2 {
   font-weight: 600;
 }
+
 hr {
   width: 90%;
 }
+
 .hide-data {
   display: none;
 }
+
 .show-data {
   display: block;
 }
+
 form.add-resource {
   display: flex;
   justify-content: flex-start;
   text-align: left;
   align-items: start;
 }
+
 form.add-resource label {
   color: #006996;
 }
+
 .form-control {
   border-radius: none;
   outline: none;
   border: none;
 }
+
 .tab {
   cursor: pointer;
 }
+
 .form-control:focus {
   border-radius: none;
   border: none;
   outline: none;
   box-shadow: none;
 }
+
 form.add-resource input {
   margin: 10px 3px;
 }
+
 table.resource-content {
   background-color: #f7ffff;
 }
@@ -155,13 +185,16 @@ button.download {
 button.download:hover {
   background-color: #1f94c6;
 }
-.table > :not(caption) > * > * {
+
+.table> :not(caption)>*>* {
   padding: 0px;
 }
+
 .bell {
   background-color: #e6f2ff;
   border: none;
 }
+
 .bell::after {
   position: absolute;
   content: "";
@@ -172,10 +205,12 @@ button.download:hover {
   top: 10;
   border-radius: 50%;
 }
+
 .tab {
   margin: 5px 10px;
   padding: 10px;
 }
+
 .tab-actived {
   background-color: #83eeee;
   border-radius: 4px;
@@ -183,13 +218,16 @@ button.download:hover {
   border: 2px solid #004d4d;
   padding: 10px;
 }
+
 tbody tr td {
   background-color: #e6f2ff !important;
   border: none !important;
 }
+
 .bell-drop {
   position: relative;
 }
+
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -198,6 +236,7 @@ tbody tr td {
   height: 200px;
   right: 0;
 }
+
 .bell-drop:hover .dropdown-menu {
   display: block;
   top: 25px;
@@ -205,9 +244,11 @@ tbody tr td {
   transition-duration: 0.3s;
   width: 300px;
 }
+
 .prof-icon {
   position: relative;
 }
+
 .profile-menu {
   display: none;
   position: absolute;
@@ -221,6 +262,7 @@ tbody tr td {
   opacity: 0;
   transition-duration: 1s;
 }
+
 @media (max-width: 700px) {
   .profile-menu {
     position: absolute;
@@ -228,39 +270,49 @@ tbody tr td {
     width: 300px;
     height: 250px;
   }
+
   .dropdown-menu {
     position: absolute;
     right: 0px;
     height: 300px;
   }
 }
+
 .prof-icon:hover .profile-menu {
   display: block;
   top: 0px;
   opacity: 1;
 }
+
 tr:hover {
   background-color: grey;
 }
+
 td {
   min-width: 100px;
 }
+
 a {
   text-decoration: none;
 }
+
 label {
   color: #00394d;
 }
+
 .red {
   color: red;
 }
+
 .hover-effect {
   transition-duration: 0.5s;
 }
+
 .hover-effect:hover {
   background-color: #c8ffff;
   color: black;
 }
+
 .pdf-viewer-container {
   max-width: 800px;
   margin: 0 auto;

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import '../App.css'
+import '../../App.css'
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios'
 
 const CreateClient = () => {
     const Navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
     const [createClient, setCreateClient] = useState({
         fistname: "",
         lastname: "",
@@ -26,6 +27,7 @@ const CreateClient = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
         console.log(createClient)
         try {
             const response = await axios.post(
@@ -38,16 +40,49 @@ const CreateClient = () => {
                 }
             );
             if (response.status === 201) {
+                setLoading(false)
                 toast.success("Job Edited Successfully");
-                window.location.reload()
+                setCreateClient({
+                    fistname: "",
+                    lastname: "",
+                    address: "",
+                    company: "",
+                    province: "",
+                    postal: "",
+                    city: "",
+                    country: "",
+                    email: "",
+                    password: "1234",
+                })
             }
-            else {
-                alert("error")
-            }
+
         } catch (err) {
             console.log(err);
+            toast.error("failed")
+            setLoading(false)
+            setCreateClient({
+                fistname: "",
+                lastname: "",
+                address: "",
+                company: "",
+                province: "",
+                postal: "",
+                city: "",
+                country: "",
+                email: "",
+                password: "1234",
+            })
         }
     };
+    if (loading) {
+        return (
+            <>
+                <div className="w-100 d-flex justify-content-center align-items-center" sstyle={{ height: "100vh" }}>
+                    <div className="text-center">Loading......</div>
+                </div>
+            </>
+        )
+    }
 
     return (
         <>
@@ -103,7 +138,7 @@ const CreateClient = () => {
                     </div>
                 </div>
                 <div className="w-100 row">
-                    <button type="submit" className="btn btn-primary col-6 mx-auto my-4">
+                    <button type="submit" className="btn btn-primary col-6 mx-auto my-4" >
                         Create Client
                     </button>
                 </div>

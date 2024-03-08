@@ -3,11 +3,11 @@ import "../App.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import Dashboard from "../components/Dashboard";
-import Documentation from "../components/sendDocument";
-import Clients from "../components/Clients";
-import SendRequest from "../components/SendRequest";
-import Documents from "../components/Documents";
+import Dashboard from "../components/dashboard/Dashboard";
+import Documentation from "../components/forms/sendDocument";
+import Clients from "../components/clients/Clients";
+import SendRequest from "../components/forms/SendRequest";
+import Documents from "../components/documents/Documents";
 
 import { TbBellRingingFilled } from "react-icons/tb";
 import { FiSearch } from "react-icons/fi";
@@ -19,7 +19,7 @@ import { AiFillFolder } from "react-icons/ai";
 import { MdClose } from "react-icons/md";
 
 import LOGO from "../assets/logo.png";
-import Jobs from "../components/Jobs";
+import Jobs from "../components/jobs/Jobs";
 
 const Home = () => {
   const [userToken, setUserToken] = useState("");
@@ -109,7 +109,7 @@ const Home = () => {
 
   return (
     <>
-      <section className="w-100" style={{ height: "100vh" }}>
+      <section className="w-100" style={{ height: "100vh", overflow: "hidden" }}>
         <div
           className="d-flex justify-content-between align-items-center shadow w-100"
           style={{ height: "50px", backgroundColor: "#e6f2ff" }}
@@ -238,7 +238,10 @@ const Home = () => {
                     navigate("/");
                   }}
                 >
-                  <span className="px-3 b-5">
+                  <span className="px-3 b-5" onClick={() => {
+                    localStorage.removeItem("token")
+                    navigate("/")
+                  }}>
                     <CiLogin />
                   </span>
                   <span>logout</span>
@@ -334,7 +337,7 @@ const Home = () => {
             className="px-2 mt-4 mb-2 py-2"
             style={{
               width: "97%",
-              height: width < 700 ? "89vh" : "85vh",
+              // height: width < 700 ? "89vh" : "85vh",
               minHeight: "85vh",
               overflowX: "hidden",
               overflowY: "scroll",

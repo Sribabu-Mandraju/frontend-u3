@@ -1,7 +1,7 @@
-import "../css/jobs.css";
-import { fetchJobs } from "../store/jobSlice";
-import JobForm from "./jobs/JobForm";
-import JobListing from "./jobs/JobListing";
+import "../../css/jobs.css";
+import { fetchJobs } from "../../store/jobSlice";
+import JobForm from "./JobForm";
+import JobListing from "./JobListing";
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 

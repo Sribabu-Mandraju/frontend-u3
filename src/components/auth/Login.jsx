@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import CustomModal from './Modal';
+import CustomModal from '../modals/Modal';
 import { toast } from 'react-hot-toast'
 
 const Login = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [values, setValues] = useState({
     Email: "",
     Password: "",
   });
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const [showModal, setShowModal] = useState(false); // State to control modal display
-  const [errorMessage, setErrorMessage] = useState(""); // State to hold error message
+  const [showModal, setShowModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const openModal = () => {
     setShowModal(true);
@@ -27,10 +27,10 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
 
     try {
       const response = await axios.post("https://backend-u3.onrender.com/admin/login", values);
-
       if (response.status === 200) {
         const token = response.data.token;
         localStorage.setItem("token", token);
@@ -50,6 +50,15 @@ const Login = () => {
   const closeModal = () => {
     setShowModal(false);
   };
+  if (loading) {
+    return (
+      <>
+        <div className="w-100 d-flex justify-content-center align-items-center" sstyle={{ height: "100vh" }}>
+          <div className="text-center">Loading......</div>
+        </div>
+      </>
+    )
+  }
 
   return (
     <>
@@ -109,9 +118,10 @@ const Login = () => {
             <span className="mt-3 w-100">
               <input
                 type="submit"
-                value={`${loading ? "Login" : "Loggin in...."}`}
+                value="submit"
                 className="w-100"
                 style={{ backgroundColor: "#006996", color: "white" }}
+
               />
             </span>
           </form>

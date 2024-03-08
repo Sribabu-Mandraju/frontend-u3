@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast'
 import axios from 'axios';
-import '../App.css'
+import '../../App.css'
 import { Spinner } from 'react-bootstrap';
 
 

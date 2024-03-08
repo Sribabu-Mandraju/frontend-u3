@@ -4,7 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import { RiExpandUpDownFill } from "react-icons/ri";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
-import CustomModal from "./Modal";
+import CustomModal from "../modals/Modal";
 
 const Dashboard = () => {
   const [userToken, setUserToken] = useState("");
@@ -305,8 +305,6 @@ const Dashboard = () => {
                     </div>
                   </CustomModal>
                 </>
-
-
               ))}
             </div>
           </div>

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { MdKeyboardBackspace } from "react-icons/md";
-import logo from '../assets/logo.png'
+import logo from '../../assets/logo.png'
 import { Breadcrumb } from 'react-bootstrap';
-import c1 from '../assets/b party.png'
+import c1 from '../../assets/b party.png'
 import { FaDownload } from "react-icons/fa6";
 import { PiCaretUpDownThin } from "react-icons/pi";
-import image404 from "../assets/404.png"
+import image404 from "../../assets/404.png"
 import { FaRegUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaUserTag, FaCalendarAlt, FaBuilding, FaFileAlt } from 'react-icons/fa';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import axios from "axios"
@@ -19,12 +19,14 @@ import { RiExpandUpDownFill } from "react-icons/ri";
 
 
 const ClientDetails = () => {
+    const Navigate = useNavigate()
     const [right, setRight] = useState("details")
     const [dataArray, setDataArray] = useState([])
     const [userToken, setUserToken] = useState("")
     const [clientData, setClientData] = useState({})
     const [loading, setLoading] = useState(false);
     const { clientId } = useParams();
+    const [pdfID, setPdfID] = useState("")
 
     const [pdfUrls, setPdfUrls] = useState([]);
     const [error, setError] = useState(null);
@@ -168,9 +170,14 @@ const ClientDetails = () => {
                                     <div className="d-flex align-items-center" style={{ minWidth: "150px" }}>
                                         <span className="">{dataArray[0].title}</span>
                                     </div>
-                                    <div className="d-flex align-items-center" style={{ minWidth: "100px" }}>
-                                        <Link to={`/clients/pdf/${pdfUrl}`}>View</Link>
-                                    </div>
+                                    <button className="btn-primary btn" onClick={() => {
+                                        setPdfID(dataArray[0]._id);
+                                        console.log("me")
+                                        if (pdfID != "") {
+                                            Navigate(`/clients/pdf/${pdfID}`)
+                                        }
+                                    }}>view
+                                    </button>
                                 </div>
                             ))}
                         </div>

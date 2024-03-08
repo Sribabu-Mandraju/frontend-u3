@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MdOutlineGroups } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
-import CustomModal from "./Modal";
+import CustomModal from "../modals/Modal";
 
 const Clients = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,9 +28,9 @@ const Clients = () => {
     { id: 19, title: "Response nineteen", email: "user19@example.com", postedBy: "u3tech", status: "approved" },
     { id: 20, title: "Response twenty", email: "user20@example.com", postedBy: "u3tech", status: "pending" },
   ];
-  
-      
-      
+
+
+
 
   const totalItems = data.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -67,7 +67,7 @@ const Clients = () => {
           <div className="h4 px-2">Clients</div>
         </div>
         <div className="table-responsive table-striped w-100  mt-4" style={{ height: "auto", overflow: "" }}>
-          <div className="d-flex align-items-center mb-3 justify-content-between" style={{position:"sticky",left:"0"}}>
+          <div className="d-flex align-items-center mb-3 justify-content-between" style={{ position: "sticky", left: "0" }}>
             <div className="mx-2 d-flex align-items-center">
               <FiSearch style={{ marginRight: "-20px", zIndex: "1" }} />
               <input type="text" placeholder="search......." className="py-1 ps-4" style={{ borderRadius: "5px", border: "0.3px solid grey" }} />
@@ -111,21 +111,21 @@ const Clients = () => {
                   <td className="p-2">{item.email}</td>
                   <td className="p-2">{item.postedBy}</td>
                   <td className="p-2" >
-                    <button className=" btn btn-primary d-flex justify-content-center align-items-center w-100" style={{height:"30px"}} onClick={openModal}>
-                        Info
+                    <button className=" btn btn-primary d-flex justify-content-center align-items-center w-100" style={{ height: "30px" }} onClick={openModal}>
+                      Info
                     </button>
                     <CustomModal showModal={showModal} closeModal={closeModal}>
-                        <p>This is custom content inside the modal.</p> 
-                        <p>Add more elements as needed.</p>
+                      <p>This is custom content inside the modal.</p>
+                      <p>Add more elements as needed.</p>
                     </CustomModal>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <div className="pagination d-flex justify-content-center" style={{position:"sticky",left:"0"}}>
+          <div className="pagination d-flex justify-content-center" style={{ position: "sticky", left: "0" }}>
             {Array.from({ length: totalPages }, (_, index) => (
-              <button key={index + 1} onClick={() => handlePageChange(index + 1)} className={`${currentPage === index + 1 ? "active mx-2 p-2 " : "mx-2 p-2"} ${currentPage == index +1?"bg-primary":"bg-white"}`} style={{borderRadius:"7px"}}>
+              <button key={index + 1} onClick={() => handlePageChange(index + 1)} className={`${currentPage === index + 1 ? "active mx-2 p-2 " : "mx-2 p-2"} ${currentPage == index + 1 ? "bg-primary" : "bg-white"}`} style={{ borderRadius: "7px" }}>
                 {index + 1}
               </button>
             ))}

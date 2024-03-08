@@ -7,14 +7,14 @@ import { GoFileSubmodule } from "react-icons/go";
 import { IoMdPersonAdd } from "react-icons/io";
 import { FaCircleInfo } from "react-icons/fa6";
 // import CustomModal2 from "./modals/Modal2";
-import '../App.css'
+import '../../App.css'
 import { Link, useNavigate } from "react-router-dom"
-import c from '../assets/b party.png'
+import c from '../../assets/b party.png'
 import { RiExpandUpDownFill } from "react-icons/ri";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import axios from 'axios'
 import CreateClient from "./createClient";
-import CustomModal from "./Modal";
+import CustomModal from "../modals/Modal";
 
 
 

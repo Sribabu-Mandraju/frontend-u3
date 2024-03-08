@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../App.css';
+import '../../App.css';
 import { useNavigate } from 'react-router-dom';
 
 const SendRequest = () => {
@@ -128,7 +128,7 @@ const SendRequest = () => {
                     </span>
 
                     <span className="mt-3 w-100">
-                        <input type="submit" value="submit" className="w-100" style={{ backgroundColor: '#006996', color: 'white' }} />
+                        <button className="btn btn-primary px-5" type="submit">Send</button>
                     </span>
                 </form>
 
