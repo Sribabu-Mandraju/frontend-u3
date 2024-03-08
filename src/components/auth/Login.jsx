@@ -53,8 +53,8 @@ const Login = () => {
   if (loading) {
     return (
       <>
-        <div className="w-100 d-flex justify-content-center align-items-center" sstyle={{ height: "100vh" }}>
-          <div className="text-center">Loading......</div>
+        <div className="w-100 d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
+          <div className="">Loading...</div>
         </div>
       </>
     )

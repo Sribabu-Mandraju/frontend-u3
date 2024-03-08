@@ -8,7 +8,7 @@ const CreateClient = () => {
     const Navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const [createClient, setCreateClient] = useState({
-        fistname: "",
+        firstname: "",
         lastname: "",
         address: "",
         company: "",
@@ -43,7 +43,7 @@ const CreateClient = () => {
                 setLoading(false)
                 toast.success("Job Edited Successfully");
                 setCreateClient({
-                    fistname: "",
+                    firstname: "",
                     lastname: "",
                     address: "",
                     company: "",
@@ -61,7 +61,7 @@ const CreateClient = () => {
             toast.error("failed")
             setLoading(false)
             setCreateClient({
-                fistname: "",
+                firstname: "",
                 lastname: "",
                 address: "",
                 company: "",
@@ -98,7 +98,7 @@ const CreateClient = () => {
                 <div className="w-100 row">
                     <div className="col-6">
                         <label htmlFor="fname" className="form-label">First Name</label>
-                        <input type="text" name="fistname" className="form-control" onChange={handleChange} required />
+                        <input type="text" name="firstname" className="form-control" onChange={handleChange} required />
                     </div>
                     <div className="col-6">
                         <label htmlFor="lname" className="form-label">Last Name</label>

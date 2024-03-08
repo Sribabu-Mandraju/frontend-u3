@@ -11,6 +11,7 @@ const Documentation = () => {
   const [clients, setClients] = useState([])
   const [fileData, setFileData] = useState(null);
   const [spinner, setSpinner] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [token, setToken] = useState("")
   const [resourceData, setResourceData] = useState({
     title: '',
@@ -61,6 +62,7 @@ const Documentation = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     const formData = new FormData();
     formData.append('title', resourceData.title);
     formData.append('user_email', resourceData.sendTo);
@@ -68,7 +70,6 @@ const Documentation = () => {
     console.log(formData)
 
     try {
-      setSpinner(true)
       const response = await axios.post("https://backend-u3.onrender.com/admin/client/uploadPdf", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -76,21 +77,39 @@ const Documentation = () => {
         }
       })
       if (response.status == 200) {
-        setSpinner(false)
+        setLoading(false)
         console.log("response", response.data)
         toast.success("file successfully uploaded")
-        window.location.reload()
+        setResourceData({
+          title: '',
+          file: null,
+          sendTo: ""
+        })
       }
     }
     catch (err) {
       console.log(err)
       toast.error("failed to upload")
+      setLoading(false)
+      setResourceData({
+        title: '',
+        file: null,
+        sendTo: ""
+      })
     }
 
 
   };
 
-
+  if (loading) {
+    return (
+      <>
+        <div className="w-100 d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+          <div className="text-center">Loading......</div>
+        </div>
+      </>
+    )
+  }
 
   return (
     <section className="resource-form w-100 mt-3" style={{ width: '97%', maxWidth: '1100px', height: '87vh' }}>

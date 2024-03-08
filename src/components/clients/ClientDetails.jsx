@@ -13,6 +13,9 @@ import axios from "axios"
 import { toast } from 'react-hot-toast'
 import { RiExpandUpDownFill } from "react-icons/ri";
 
+import ClientInfo from './ClientProfile';
+import EditDetails from './EditDetails';
+
 
 
 
@@ -97,7 +100,7 @@ const ClientDetails = () => {
                 }
             });
             const responseArray = response.data
-            alert("success")
+            toast.success("successfully file fetched")
             setDataArray(responseArray)
             const pdfDataArray = response.data.map(pdf => {
                 const pdfData = pdf.pdffile.Data;
@@ -116,35 +119,10 @@ const ClientDetails = () => {
 
 
 
-    const clientDataInfo = [
-        { title: "Name", icon: <FaRegUser />, value: clientData.firstname + " " + clientData.lastname },
-        { title: "Email", icon: <FaEnvelope />, value: clientData.email },
-        { title: "Country", icon: <FaEnvelope />, value: clientData.country },
-        { title: "Address", icon: <FaMapMarkerAlt />, value: clientData.address },
-        { title: "City", icon: <FaMapMarkerAlt />, value: clientData.city },
-        { title: "Company", icon: <FaBuilding />, value: clientData.company },
-        { title: "Postal", icon: <FaBuilding />, value: clientData.postal },
-        { title: "Created Account", icon: <FaEnvelope />, value: clientData.created_at },
-    ];
 
 
-    const DetailsClient = () => {
 
-        return (
-            <>
-                <div className="w-100 d-flex flex-column">
-                    {
-                        clientDataInfo.map((data) => (
-                            <div className="row w-100 ps-3 py-2">
-                                <div className="col-12 col-sm-5 col-md-4 d-flex align-items-center" style={{ color: "grey" }}>{data.icon}<span className="ps-2" style={{ minWidth: "120px" }}>{data.title}</span> </div>
-                                <div className="col-12 col-sm-7 col-md-8" style={{ color: "#006996", fontWeight: "700" }}>{data.value}</div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </>
-        )
-    }
+   
 
     const DocumentsClient = () => {
 
@@ -187,39 +165,7 @@ const ClientDetails = () => {
         )
     }
 
-    const EditData = () => {
-        return (
-            <>
-                <form className="resource-form shadow d-flex flex-column ps-3 py-3 mx-auto"
-                    style={{
-                        width: '97%',
-                        maxWidth: '450px',
-                        backgroundColor: '#F7FFFF',
-                    }}
-
-                >
-                    <span className="mt-3">
-                        <label htmlFor="name" className="ps-2">Name</label>
-                        <input type="text" name="name" placeholder="Client Name" onChange={handleChange} required />
-                    </span>
-
-                    <span className="mt-3">
-                        <label htmlFor="email" className="ps-2">Email</label>
-                        <input type="email" name="email" placeholder="Client Email" onChange={handleChange} required />
-                    </span>
-                    <span className="mt-3">
-                        <label htmlFor="contact" className="ps-2">Email</label>
-                        <input type="number" name="contact" placeholder="Client Email" onChange={handleChange} required />
-                    </span>
-                    <span className="mt-3">
-                        <input type="submit" value="submit" style={{ backgroundColor: '#006996', color: 'white' }} />
-                    </span>
-
-                </form>
-            </>
-        )
-    }
-
+   
     const ClientActivities = () => {
         return (
             <>
@@ -288,6 +234,18 @@ const ClientDetails = () => {
                     <div className="breadcrumb-item h4" style={{ textDecoration: "none" }}>{clientData.firstname + " " + clientData.lastname}</div>
                 </div>
                 <div className="w-100 gap-2 row" style={{ margin: "0px 0px", }}>
+                    <div className=" col-11 col-md-5 col-lg-5  mx-auto card d-flex flex-column shadow" style={{
+                    }}>
+                        <div className="d-flex w-100 align-items-center justify-content-between">
+                            <h1 className="h1 m-3 px-2" style={{ fontWeight: "700", borderLeft: "8px solid #006996" }}>Client Details</h1>
+                            <div className="d-flex align-items-center">
+                                <button className=" btn btn-outline-primary" onClick={() => { setRight("edit") }}>Edit</button>
+                                <button className=" btn btn-outline-primary mx-3" onClick={() => { setRight("details") }} >Details</button>
+                            </div>
+                        </div>
+                        {right == "details" && <ClientInfo clientData={clientData} />}
+                        {right == "edit" && <EditDetails clientData={clientData} />}
+                    </div>
                     <div className="col-11 col-md-6 col-lg-6 mx-auto   d-flex flex-column shadow" style={{
                         height: "auto",
                         minHeight: "70vh"
@@ -341,20 +299,6 @@ const ClientDetails = () => {
                             {tab == "Activities" && <ClientActivities />}
                         </div>
                     </div>
-                    <div className=" col-11 col-md-5 col-lg-5  mx-auto card d-flex flex-column shadow" style={{
-                    }}>
-                        <div className="d-flex w-100 align-items-center justify-content-between">
-                            <h1 className="h1 m-3 px-2" style={{ fontWeight: "700", borderLeft: "8px solid #006996" }}>Client Details</h1>
-                            <div className="d-flex align-items-center">
-                                <button className=" btn btn-outline-primary" onClick={() => { setRight("edit") }}>Edit</button>
-                                <button className=" btn btn-outline-primary mx-3" onClick={() => { setRight("details") }} >Details</button>
-                            </div>
-                        </div>
-                        {right == "details" && <DetailsClient />}
-                        {right == "edit" && <EditData />}
-                    </div>
-
-
                 </div>
             </section>
         </>

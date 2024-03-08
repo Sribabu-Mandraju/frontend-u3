@@ -337,7 +337,7 @@ const Home = () => {
             className="px-2 mt-4 mb-2 py-2"
             style={{
               width: "97%",
-              // height: width < 700 ? "89vh" : "85vh",
+              height: width < 700 ? "89vh" : "85vh",
               minHeight: "85vh",
               overflowX: "hidden",
               overflowY: "scroll",
