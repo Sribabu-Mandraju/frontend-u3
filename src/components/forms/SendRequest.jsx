@@ -31,7 +31,7 @@ const SendRequest = () => {
         const fetchData = async () => {
             try {
                 const getToken = localStorage.getItem("token");
-                console.log("Token:", getToken); // Log token for debugging
+                console.log("Token:", getToken); 
                 setToken(getToken);
 
                 const result = await axios.get("https://backend-u3.onrender.com/admin/client/all-clients", {
@@ -40,7 +40,7 @@ const SendRequest = () => {
                         'Authorization': `${token}`
                     }
                 });
-                console.log("Response:", result.data); // Log response data for debugging
+                console.log("Response:", result.data);
 
                 if (result.status !== 200) {
                     throw new Error('Network response was not ok');

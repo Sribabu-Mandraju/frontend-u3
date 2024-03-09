@@ -104,8 +104,9 @@ const Documentation = () => {
   if (loading) {
     return (
       <>
-        <div className="w-100 d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
-          <div className="text-center">Loading......</div>
+        <div className="w-100 d-flex justify-content-center flex-column align-items-center" style={{ height: "100vh" }}>
+          <Spinner animation="border" role="status" />
+          <div className="text-center">Uploading File......</div>
         </div>
       </>
     )

@@ -140,18 +140,18 @@ const Clients = () => {
           <div className="h4 px-2">Clients</div>
         </div>
         <div className="table-responsive table-striped w-100  mt-4" style={{ height: "auto", overflow: "" }}>
-          <div className="d-flex align-items-center justify-content-between mb-3 " >
-            <div className="mx-2 d-flex align-items-center">
+          <div className="d-flex align-items-center justify-content-between flex-wrap mb-3 " style={{ position: "sticky", left: "0px", top: "0%" }} >
+            <div className="mx-2 d-flex align-items-center ">
               <FiSearch style={{ marginRight: "-20px", zIndex: "1" }} />
-              <input type="text" placeholder="search......." className="py-1 ps-4" style={{ borderRadius: "5px", border: "0.3px solid grey" }} onChange={e => setSearchQuery(e.target.value)} />
+              <input type="text" placeholder="search......." className="py-1 ps-4" style={{ borderRadius: "5px", border: "0.3px solid grey", maxWidth: "150px" }} onChange={e => setSearchQuery(e.target.value)} />
             </div>
-            <button className="btn btn-primary mx-2  " onClick={openModal} style={{ marginRight: "" }}><span className="px-1">{width > 600 ? "Create Client" : "Add"}</span></button>
+            <button className="btn btn-primary m-2  " onClick={openModal} style={{ marginRight: "" }}><span className="px-1">{width > 600 ? "Create Client" : "Add"}</span></button>
           </div>
           <div className={`w-100 d-flex ${width > 700 ? "justify-content-between" : "justify-content-around"} align-items-center flex-wrap`}>
             <div className="d-flex flex-column mx-auto" style={{ width: "100%", minWidth: "350px", overflowX: "scroll" }}>
               <div className="w-100 d-flex align-items-center flex-column   justify-content-center" style={{ minWidth: "1100px" }}>
                 <div className="d-flex justify-content-start bg-dark text-white align-items-center  mb-2  py-1 shadow" style={{ width: "100%", minWidth: "950px", height: "50px" }}>
-                  <div className="me-5 ps-3">S.no</div>
+                  <div className="me-5 ps-3 text-center" style={{ minWidth: "60px", paddingLeft: "100px" }}>S.no</div>
                   <div className="d-flex align-items-center " style={{ minWidth: "200px" }}>
                     <span className="pe-4">First Name</span>
                     <RiExpandUpDownFill />
@@ -177,14 +177,14 @@ const Clients = () => {
                 </div>
                 {
                   filteredData.map((data, index) => (
-                    <div className="d-flex justify-content-start align-items-center hover-effect cursor-pointer border  my-2  py-4 shadow" style={{ width: "100%", minWidth: "950px", height: "50px", cursor: "pointer" }} onClick={() => {
+                    <div className="d-flex justify-content-start align-items-center hover-effect cursor-pointer border  mt-2  py-4 shadow" style={{ width: "100%", minWidth: "950px", height: "50px", cursor: "pointer" }} onClick={() => {
                       setClientID(data._id)
                       console.log(clientID)
                       if (clientID != "") {
                         navigate(`/clients/${clientID}`)
                       }
                     }}>
-                      <div className="me-5 ps-3">{index + 1}</div>
+                      <div className="me-5 ps-3" style={{ minWidth: "60px", paddingLeft: "100px" }}>{index + 1}</div>
                       <div className="d-flex align-items-center" style={{ minWidth: "200px" }}>
                         <span className="pe-4">{data.firstname}</span>
                       </div>

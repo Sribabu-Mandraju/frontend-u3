@@ -5,6 +5,9 @@ import { RiExpandUpDownFill } from "react-icons/ri";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
 import CustomModal from "../modals/Modal";
+import { Spinner } from 'react-bootstrap';
+
+
 
 const Dashboard = () => {
   const [userToken, setUserToken] = useState("");
@@ -12,10 +15,13 @@ const Dashboard = () => {
   const [selectedOption, setSelectedOption] = useState("ALL");
   const [requests, setRequests] = useState([]);
   const [search, setSearch] = useState("");
-  const [selectedRequest, setSelectedRequest] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedItemIndex, setSelectedItemIndex] = useState(null);
+
   const [showModalArray, setShowModalArray] = useState([]);
+
+  useEffect(() => {
+    const getToken = localStorage.getItem("token");
+    setUserToken(getToken);
+  }, [])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -84,13 +90,14 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ height: "100vh" }}
-      >
-        <div className="">Loading...</div>
-      </div>
-    );
+      <>
+        <div className="w-100 d-flex justify-content-center flex-column align-items-center" style={{ height: "100vh" }}>
+          <Spinner animation="border" role="status" />
+          <div className="text-center">Loading  Data......</div>
+        </div>
+      </>
+
+    )
   }
 
   return (
@@ -204,7 +211,7 @@ const Dashboard = () => {
                 </div>
                 <div
                   className="d-flex align-items-center"
-                  style={{ minWidth: "170px" }}
+                  style={{ minWidth: "240px" }}
                 >
                   <span className="">Send to</span>
                   <RiExpandUpDownFill />
@@ -228,7 +235,7 @@ const Dashboard = () => {
                 <>
                   <div
                     key={index}
-                    className="d-flex justify-content-around align-items-center hover-effect cursor-pointer border  my-2  py-4 shadow"
+                    className="d-flex justify-content-around align-items-center hover-effect cursor-pointer border  mt-2  py-4 shadow"
                     style={{
                       width: "100%",
                       minWidth: "950px",
@@ -251,7 +258,7 @@ const Dashboard = () => {
                     </div>
                     <div
                       className="d-flex align-items-center"
-                      style={{ minWidth: "170px" }}
+                      style={{ minWidth: "360px" }}
                     >
                       {data.sendto}
                     </div>
@@ -261,7 +268,7 @@ const Dashboard = () => {
                     >
                       <button
                         className=" badge text-dark btn btn-outline-primary"
-                        onClick={() => openModal(index)}
+                        onClick={() => openModal(index)} style={{ minWidth: "" }}
                       >
                         Info
                       </button>
