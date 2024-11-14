@@ -4,7 +4,7 @@ import axios from "axios";
 export const fetchJobs = createAsyncThunk("/fetch/jobs", async (token) => {
   try {
     const res = await axios.get(
-      `${import.meta.env.VITE_APP_BACKEND_URL}/admin/jobs/`,
+      `${import.meta.env.VITE_APP_BACKEND_URL}admin/jobs/`,
       {
         headers: {
           Authorization: token,

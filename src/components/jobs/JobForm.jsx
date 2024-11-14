@@ -48,7 +48,7 @@ const JobForm = ({ setIsForm, isForm }) => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/admin/job/update/${
+        `${import.meta.env.VITE_APP_BACKEND_URL}admin/job/update/${
           currentJob.id
         }`,
         {
@@ -95,7 +95,7 @@ const JobForm = ({ setIsForm, isForm }) => {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/admin/job/new`,
+        `${import.meta.env.VITE_APP_BACKEND_URL}admin/job/new`,
         {
           role: data.role,
           company: data.company,
